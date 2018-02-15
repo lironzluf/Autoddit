@@ -9,21 +9,17 @@ class Login extends React.Component {
         super();
         this.usernameChanged = this.usernameChanged.bind(this);
         this.setUsername = this.setUsername.bind(this);
-
-        this.state = {
-            username: ''
-        }
     }
 
     usernameChanged(event) {
-        this.setState({
-            username: event.target.value
-        });
+        this.props.setUsername(event.target.value);
     }
 
-    setUsername() {
-        this.props.setUsername(this.state.username);
-        this.props.goToHome();
+    setUsername(event) {
+        event.preventDefault();
+        if (this.props.username && this.props.username.length > 0) {
+            this.props.goToHome();
+        }
     }
 
     render() {
@@ -31,12 +27,20 @@ class Login extends React.Component {
             <div>
                 <h1>Login</h1>
                 <p>Welcome, please insert your username!</p>
-                <input type="text" placeholder="Username" onChange={this.usernameChanged}/>
-                <button onClick={this.setUsername}>Continue</button>
+                <form onSubmit={this.setUsername}>
+                    <input type="text" placeholder="Username" onChange={this.usernameChanged}/>
+                    <button type="submit" className="button" onClick={this.setUsername}>Continue</button>
+                </form>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        username: state.app.username
+    }
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
         goToHome: () => push('/'),
@@ -44,6 +48,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     }, dispatch);
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Login);

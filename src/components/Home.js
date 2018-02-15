@@ -1,22 +1,23 @@
-import React from 'react'
-import { push } from 'react-router-redux'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React from 'react';
+import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { posts } from '../mock/posts.json';
+import Post from './Post';
 
 class Home extends React.Component {
-    componentDidMount() {
-        if (!this.props.username) {
-            this.props.redirectToLogin();
-        }
-    }
 
     render() {
         return (
 
             <div>
-                <h1>Home</h1>
-                <p>Welcome home!</p>
-                <button onClick={() => this.props.goToAddLink()}>Go to add link page via redux</button>
+                <p>Welcome to Autoddit {this.props.username}!</p>
+
+                {
+                    posts && posts.map((post, index) => {
+                        return <Post data={post} key={index} />;
+                    })
+                }                
             </div>
         )
     }
@@ -29,7 +30,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    redirectToLogin: () => push('/login'),
     goToAddLink: () => push('/add-link')
 }, dispatch);
 
