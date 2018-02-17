@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { addPost } from '../redux/actions/index';
 import { postService } from '../services/post.service';
+import InputGroup from './InputGroup';
 
 class AddLink extends React.Component {
     constructor() {
@@ -57,18 +58,9 @@ class AddLink extends React.Component {
                     <h1>Add Link</h1>
                     {this.state.error && <p className="error">Please fill in all the fields and check urls are valid.</p>}
                     
-                    <div className="input-group">
-                        <label>Title</label>
-                        <input type="text" onChange={this.titleChanged} value={this.state.title}/>
-                    </div>
-                    <div className="input-group">
-                        <label>Link</label>
-                        <input type="text" onChange={this.linkChanged} value={this.state.url}/>
-                    </div>
-                    <div className="input-group">
-                        <label>Image URL</label>
-                        <input type="text" onChange={this.imageURLChanged} value={this.state.imageUrl}/>
-                    </div>
+                    <InputGroup name="Title" onChange={this.titleChanged} value={this.state.title}/>
+                    <InputGroup name="Link" onChange={this.linkChanged} value={this.state.url}/>
+                    <InputGroup name="Image URL" onChange={this.imageURLChanged} value={this.state.imageUrl}/>
 
                     <button type="submit" className="button" 
                         onClick={this.addPost}>Save</button>

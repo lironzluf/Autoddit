@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     null,
     mapDispatchToProps,
-    null, {pure:false})(App);
+    null, { pure:false })(App);
