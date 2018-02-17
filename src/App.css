@@ -63,7 +63,12 @@ input[type="text"] {
 .error {
   color: red;
 }
-
+.fas.fa-caret-up {
+  color: green;
+}
+.fas.fa-caret-down {
+  color: red;
+}
 header {
   margin: 0;
   height: 196px;

@@ -1,18 +1,18 @@
 {
     "comments": [
         {
-        "comment": "Comment Title",
+        "comment": "This is a comment",
         "username": "liron",
         "createdAt": 1518792158914,
         "comments": [{
-            "comment": "Sub-Comment Title",
+            "comment": "This is a sub comment",
             "username": "ziv",
             "createdAt": 1518792158919,
             "comments": []
         }]
     },
     {
-        "comment": "Comment Title",
+        "comment": "This is a second comment",
         "username": "liron",
         "createdAt": 1518792158914,
         "comments": []
