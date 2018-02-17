@@ -199,7 +199,10 @@ main .post-container .post .post-info span.post-created-at {
   color: #aaa;
   font-weight: 300;
 }
-
+main .post-container .post .post-comments p {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
 main .post-container .post .post-comments .post-comment, main .post-container .post .post-comments .post-comment .post-comment-data {
   margin-bottom: 10px;
 }
