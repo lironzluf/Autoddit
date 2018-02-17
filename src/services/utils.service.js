@@ -3,10 +3,6 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 class UtilsService {
-    constructor() {
-
-    }
-
     createGuid() {
         const s4 = () => {
           return Math.floor((1 + Math.random()) * 0x10000)
