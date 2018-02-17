@@ -17,7 +17,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <header>
                     <div className="logo">
                         <img src={logo} alt="Autoddit"/>

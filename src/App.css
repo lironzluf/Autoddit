@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 body, html {
   margin: 0;
   padding: 0;
   background-color: #eee;
   font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -203,7 +205,8 @@ main .post-container .post .post-comments p {
   font-size: 0.8rem;
   font-weight: 700;
 }
-main .post-container .post .post-comments .post-comment, main .post-container .post .post-comments .post-comment .post-comment-data {
+main .post-container .post .post-comments .post-comment, 
+main .post-container .post .post-comments .post-comment .post-comment-data {
   margin-bottom: 10px;
 }
 main .post-container .post .post-comments .post-comment .post-comment-data {
