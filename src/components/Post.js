@@ -1,33 +1,53 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { updatePostVotes } from '../redux/actions/';
+import CommentContainer from './CommentContainer';
 class Post extends React.Component {
+
+    componentWillMount() {
+        this.post = this.props.data;
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.post = newProps.data;
+    }
+
+    upVote() {
+        this.post.upVotes++;
+        this.props.updateVotes(this.post);
+    }
+
+    downVote() {
+        this.post.upVotes--;
+        this.props.updateVotes(this.post);
+    }
 
     render() {
         return (
-
-            <div>
-                {this.props.data.title}
-                Submitted on {this.props.data.createdAt} by {this.props.data.username}
-                {this.props.data.comments} comments
+            <div className="post">
+                <div className="post-votes">
+                    <i className="fas fa-caret-up" onClick={() => this.upVote()}></i>
+                    {this.post.upVotes}
+                    <i className="fas fa-caret-down" onClick={() => this.downVote()}></i>
+                </div>
+                <img src={this.post.imageUrl} alt={this.post.title}/>
+                <div className="post-info">
+                    <a href={this.post.url} target="_blank">{this.post.title}</a>
+                    <span className="post-created-at">Submitted on {this.post.dateString} by {this.post.username}</span>
+                    <CommentContainer comments={this.post.commentsData} postId={this.post.id} number={this.post.comments}/>
+                </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        
-    }
-};
-
 const mapDispatchToProps = dispatch => bindActionCreators({
-    
+    updateVotes: (post) => updatePostVotes(post)
 }, dispatch);
 
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(Post);

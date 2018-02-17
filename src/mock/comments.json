@@ -1,0 +1,20 @@
+{
+    "comments": [
+        {
+        "comment": "Comment Title",
+        "username": "liron",
+        "createdAt": 1518792158914,
+        "comments": [{
+            "comment": "Sub-Comment Title",
+            "username": "ziv",
+            "createdAt": 1518792158919,
+            "comments": []
+        }]
+    },
+    {
+        "comment": "Comment Title",
+        "username": "liron",
+        "createdAt": 1518792158914,
+        "comments": []
+    }]
+}

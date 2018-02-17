@@ -2,6 +2,7 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: #eee;
+  font-size: 0.9rem;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -11,6 +12,54 @@ body, html {
 
 h1,p {
   margin-top: 0;
+}
+
+label {
+  font-size: 0.9rem;
+}
+
+label + input {
+  margin-left: 10px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  margin-right: 15px;
+  border: 1px solid #30333A;
+  outline: none;
+  color: #0079d3;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.button {
+  padding: 2px 18px;
+  background-color: #0079d3;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  height: 32px;
+  font-size: 12px;
+  box-shadow: 0 2px 1.5px 0 rgba(0,0,0,.12), 0 0 4px 0 rgba(0,0,0,.12);
+}
+
+.button + .button {
+  margin-left: 10px;
+  background-color: #aaa;
+}
+
+.input-group {
+  display: block;
+  margin: 10px 0;
+}
+
+.error {
+  color: red;
 }
 
 header {
@@ -41,7 +90,7 @@ header .logo span {
   color: #fff;
   position: relative;
   left: -40px;
-  font-size: 50px;
+  font-size: 3.5rem;
   font-weight: 700;
   font-family: Lato,arial,sans-serif;
 }
@@ -78,7 +127,7 @@ header nav a {
   padding: 0;
   text-transform: uppercase;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 1rem;
   font-family: Lato,arial,sans-serif;
   color: rgba(255,255,255,0.7);
   line-height: 42px;
@@ -117,23 +166,124 @@ main {
   font-family: Lato,arial,sans-serif;
 }
 
-input[type="text"] {
-  padding: 5px;
-  margin-right: 15px;
+
+main .post-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start
 }
 
-.button {
-  padding: 2px 18px;
-  background-color: #0079d3;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
+main .post-container .post {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+main .post-container .post img {
+  width: 100px;
+  margin: 0 10px;
+}
+
+main .post-container .post .post-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+main .post-container .post .post-info span.post-created-at {
+  color: #aaa;
+  font-weight: 300;
+}
+
+main .post-container .post .post-comments .post-comment, main .post-container .post .post-comments .post-comment .post-comment-data {
+  margin-bottom: 10px;
+}
+main .post-container .post .post-comments .post-comment .post-comment-data {
+  display: inline-block;  
+  vertical-align: top;
+}
+main .post-container .post .post-comments .post-comment .post-comment-vote {
+  display: inline-flex;
+  margin-right: 10px;
+  flex-direction: column;
+}
+main .post-container .post .post-comments .post-comment .post-comment-vote i {
   cursor: pointer;
-  height: 32px;
-  font-size: 12px;
+}
+
+main .post-container .post .post-comments .post-comments {
+  margin-left: 25px;
+}
+
+main .post-container .post .post-comments .comment-username {
+  font-weight: 700;
+  color: #30333A;
+  padding-right: 10px;
+}
+
+main .post-container .post .post-comments .comment-title {
+  color: #000000;
+}
+main .post-container .post .post-comments .comment-date {
+  color: #aaa;
+  font-weight: 300;
+}
+
+main .post-container .post .post-votes {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+main .post-container .post .post-votes i { 
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+main .backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+main .comment-modal {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 15px;
+  background: #fff;
   box-shadow: 0 2px 1.5px 0 rgba(0,0,0,.12), 0 0 4px 0 rgba(0,0,0,.12);
+  padding: 15px;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+main .comment-modal h1, main .comment-modal p {
+  margin: 0;
+}
+
+main .comment-modal textarea {
+  outline: none;
+  border: 1px solid #30333A;
+  width: 100%;
+  height: 100px;
+  margin: 20px 0;
 }
 
 @media screen and (max-width: 500px) {
