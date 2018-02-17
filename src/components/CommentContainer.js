@@ -35,24 +35,25 @@ class CommentContainer extends React.Component {
         this.commentId = newProps.commentId || -1;
     }
 
-    toggleComments() {
+    toggleComments(status) {
         this.setState({
-            isToggled: !this.state.isToggled
+            isToggled: status ? status : !this.state.isToggled
         })
     }
 
     openCommentModal() {
+        this.toggleComments(true);
         this.props.openCommentModal(this.props.postId, this.commentId);
     }
 
     render() {
         return (
             <div className="post-comments">
+                {this.commentId === -1 && <p className="hand" onClick={this.openCommentModal}>Reply</p>}
                 {!this.state.isToggled && <p onClick={this.toggleComments} className="hand">{this.props.number > 0 ? (this.props.number + ' Comments') : ''}</p>}
-                {!this.state.isToggled && this.props.number === 0 && <p  className="hand" onClick={this.openCommentModal}>Add Comment</p>}
                 {this.state.isToggled && this.comments && this.comments.map((comment, index) => {
                     return index === 0 ? <div key={comment.id}>
-                        <span onClick={this.toggleComments} className="hand">[-]</span> 
+                        <span onClick={() => this.toggleComments(false)} className="hand">[-]</span> 
                         <Comment data={comment} postId={this.postId}/>
                     </div> : <Comment data={comment} key={comment.id} postId={this.postId} />
                 })}

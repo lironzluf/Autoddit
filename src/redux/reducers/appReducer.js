@@ -76,7 +76,7 @@ export default (state = initialState, action) => {
                     return post.id === state.postId ? 
                     {...post, 
                         comments: post.comments + 1,
-                        commentsData: state.commentId === -1 ? [action.comment] :
+                        commentsData: state.commentId === -1 ? [...post.commentsData, action.comment] :
                                 addComment(post.commentsData, action.comment, state.commentId)
                     } : post
                 })

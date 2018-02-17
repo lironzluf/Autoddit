@@ -24,19 +24,22 @@ class AddLink extends React.Component {
 
     titleChanged(event) {
         this.setState({
-            title: event.target.value
+            title: event.target.value,
+            error: false
         });
     }
 
     linkChanged(event) {
         this.setState({
-            url: event.target.value
+            url: event.target.value,
+            error: false
         });
     }
 
     imageURLChanged(event) {
         this.setState({
-            imageUrl: event.target.value
+            imageUrl: event.target.value,
+            error: false
         });
     }
 
@@ -56,14 +59,23 @@ class AddLink extends React.Component {
             <div>
                 <form onSubmit={this.addPost}>
                     <h1>Add Link</h1>
-                    {this.state.error && <p className="error">Please fill in all the fields and check urls are valid.</p>}
+                    {this.state.error && <p className="error">Please fill in all the fields.</p>}
                     
-                    <InputGroup name="Title" onChange={this.titleChanged} value={this.state.title}/>
-                    <InputGroup name="Link" onChange={this.linkChanged} value={this.state.url}/>
-                    <InputGroup name="Image URL" onChange={this.imageURLChanged} value={this.state.imageUrl}/>
+                    <InputGroup name="Title" 
+                        validate={{minLength: 3}}
+                        onChange={this.titleChanged} 
+                        value={this.state.title}/>
+                    <InputGroup name="Link" 
+                        validate={{isLink: true}}
+                        onChange={this.linkChanged} 
+                        value={this.state.url}/>
+                    <InputGroup name="Image URL" 
+                        validate={{isLink: true}}
+                        onChange={this.imageURLChanged} 
+                        value={this.state.imageUrl}/>
 
-                    <button type="submit" className="button" 
-                        onClick={this.addPost}>Save</button>
+                    <input type="submit" className="button" 
+                        onClick={this.addPost} value="Save" />
                 </form>
             </div>
         )

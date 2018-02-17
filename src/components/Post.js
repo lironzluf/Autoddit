@@ -38,7 +38,7 @@ class Post extends React.Component {
                 <img src={this.post.imageUrl} alt={this.post.title}/>
                 <div className="post-info">
                     <a href={this.post.url} target="_blank">{this.post.title}</a>
-                    <span className="post-created-at">Submitted on {this.post.dateString} by {this.post.username}</span>
+                    <span className="post-created-at">Submitted on {this.post.dateString} by <span className="post-username">{this.post.username}</span></span>
                     <CommentContainer comments={this.post.commentsData} postId={this.post.id} number={this.post.comments}/>
                 </div>
             </div>

@@ -45,9 +45,8 @@ class Comment extends React.Component {
                     <i className="fas fa-caret-down" onClick={() => this.downVote()}></i>
                 </div>
                 <div className="post-comment-data">
-                    <div className="comment-username">{this.comment.username}</div>
                     <div className="comment-title">{this.comment.comment}</div>
-                    <div className="comment-date">Submitted on {this.comment.dateString}</div>
+                    <div className="comment-date">Submitted on {this.comment.dateString} by <span className="comment-username">{this.comment.username}</span></div>
                     <div onClick={this.openCommentModal} className="hand">Reply</div>
                 </div>
                 {

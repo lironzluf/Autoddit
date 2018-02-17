@@ -201,7 +201,11 @@ main .post-container .post .post-info span.post-created-at {
   color: #aaa;
   font-weight: 300;
 }
-main .post-container .post .post-comments p {
+main .post-container .post .post-info span.post-username {
+  color: #30333A;
+  font-weight: 500;
+}
+main .post-container .post .post-comments .hand {
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -227,9 +231,8 @@ main .post-container .post .post-comments .post-comments {
 }
 
 main .post-container .post .post-comments .comment-username {
-  font-weight: 700;
+  font-weight: 500;
   color: #30333A;
-  padding-right: 10px;
 }
 
 main .post-container .post .post-comments .comment-title {
@@ -246,6 +249,7 @@ main .post-container .post .post-votes {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 50px;
 }
 
 main .post-container .post .post-votes i { 
