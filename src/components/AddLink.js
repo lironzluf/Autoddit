@@ -41,7 +41,7 @@ class AddLink extends React.Component {
 
     addPost(event) {
         event.preventDefault();
-        const post = postService.createPost({...this.state, username: this.props.username});
+        const post = postService.createPost({...this.state});
         this.setState({
             error: post === null
         });
@@ -78,18 +78,12 @@ class AddLink extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.app.username
-    }
-};
-
 const mapDispatchToProps = dispatch => bindActionCreators({
     backToHome: () => push('/'),
     addPost: (post) => addPost(post)
 }, dispatch);
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(AddLink)
