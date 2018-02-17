@@ -9,6 +9,7 @@ export class Comment {
         this.upVotes = upVotes;
         this.comments = this.getComments(comments);
         this.dateString = utilsService.getDateString(this.createdAt);
+        this.upVoteBalance = 0;
     }
 
     getComments(comments) {

@@ -28,10 +28,11 @@ export const addPost = (post) => {
     }
 };
 
-export const updatePostVotes = (post) => {
+export const updatePostVotes = (post, status) => {
     return {
         type: UPDATE_POST_VOTES,
-        post
+        post,
+        status
     }
 };
 
@@ -56,10 +57,11 @@ export const createComment = (comment) => {
     }
 };
 
-export const updateCommentVotes = (comment, postId) => {
+export const updateCommentVotes = (comment, postId, status) => {
     return {
         type: UPDATE_COMMENT_VOTES,
         postId,
-        comment
+        comment,
+        status
     }
 };

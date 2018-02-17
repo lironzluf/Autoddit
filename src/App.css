@@ -254,7 +254,7 @@ main .post-container .post .post-votes i {
 }
 
 main .backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

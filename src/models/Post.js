@@ -12,6 +12,7 @@ export class Post {
         this.comments = comments;
         this.commentsData = commentsData;
         this.dateString = utilsService.getDateString(this.createdAt);
+        this.upVoteBalance = 0;
     }
 
 }

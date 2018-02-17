@@ -14,13 +14,17 @@ class Post extends React.Component {
     }
 
     upVote() {
-        this.post.upVotes++;
-        this.props.updateVotes(this.post);
+        if (this.post.upVoteBalance <= 0) {
+            this.post.upVotes++;
+            this.props.updateVotes(this.post, 1);
+        }
     }
 
     downVote() {
-        this.post.upVotes--;
-        this.props.updateVotes(this.post);
+        if (this.post.upVoteBalance >= 0) {
+            this.post.upVotes--;
+            this.props.updateVotes(this.post, -1);
+        }
     }
 
     render() {
@@ -43,7 +47,7 @@ class Post extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    updateVotes: (post) => updatePostVotes(post)
+    updateVotes: (post, status) => updatePostVotes(post, status)
 }, dispatch);
 
 

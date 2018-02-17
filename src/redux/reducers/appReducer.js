@@ -16,10 +16,10 @@ const addComment = (comments, comment, commentId) => {
     })
 };
 
-const updateCommentVote = (comments, vote, commentId) => {
+const updateCommentVote = (comments, vote, commentId, status) => {
     return comments.map((c) => {
-        return c.id === commentId ? {...c, upVotes: vote} : 
-        {...c, comments: updateCommentVote(c.comments, vote, commentId)};
+        return c.id === commentId ? {...c, upVotes: vote, upVoteBalance: c.upVoteBalance + status} : 
+        {...c, comments: updateCommentVote(c.comments, vote, commentId, status)};
     })
 };
 
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
                 posts: state.posts.map((post) => {
                     return post.id === action.postId ? 
                     {...post, 
-                        commentsData: updateCommentVote(post.commentsData, action.comment.upVotes, action.comment.id)
+                        commentsData: updateCommentVote(post.commentsData, action.comment.upVotes, action.comment.id, action.status)
                     } : post
                 })
             }
@@ -56,7 +56,13 @@ export default (state = initialState, action) => {
             return {
                 ...state, 
                 posts: state.posts.map((post) => {
-                    return post.id === action.post.id ? {...post, upVotes: action.post.upVotes} : post;
+                    return post.id === action.post.id ? 
+                    {
+                        ...post,
+                        upVoteBalance: post.upVoteBalance + action.status,
+                        upVotes: action.post.upVotes
+                    }
+                     : post;
                 })
             }
         case OPEN_MODAL:

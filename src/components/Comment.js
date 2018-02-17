@@ -10,18 +10,30 @@ class Comment extends React.Component {
         this.openCommentModal = this.openCommentModal.bind(this);
     }
 
+    componentWillMount() {
+        this.comment = this.props.data;
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.comment = newProps.data;
+    }
+
     upVote() {
-        this.props.data.upVotes++;
-        this.props.updateVotes(this.props.data, this.props.postId);
+        if (this.comment.upVoteBalance <= 0) {
+            this.comment.upVotes++;
+            this.props.updateVotes(this.comment, this.props.postId, 1);
+        }
     }
 
     downVote() {
-        this.props.data.upVotes--;
-        this.props.updateVotes(this.props.data, this.props.postId);
+        if (this.comment.upVoteBalance >= 0) {
+            this.comment.upVotes--;
+            this.props.updateVotes(this.comment, this.props.postId, -1);
+        }
     }
 
     openCommentModal() {
-        this.props.openCommentModal(this.props.postId, this.props.data.id);
+        this.props.openCommentModal(this.props.postId, this.comment.id);
     }
 
     render() {
@@ -29,22 +41,22 @@ class Comment extends React.Component {
             <div className="post-comment">
                 <div className="post-comment-vote">
                     <i className="fas fa-caret-up" onClick={() => this.upVote()}></i>
-                    {this.props.data.upVotes}
+                    {this.comment.upVotes}
                     <i className="fas fa-caret-down" onClick={() => this.downVote()}></i>
                 </div>
                 <div className="post-comment-data">
-                    <div className="comment-username">{this.props.data.username}</div>
-                    <div className="comment-title">{this.props.data.comment}</div>
-                    <div className="comment-date">Submitted on {this.props.data.dateString}</div>
+                    <div className="comment-username">{this.comment.username}</div>
+                    <div className="comment-title">{this.comment.comment}</div>
+                    <div className="comment-date">Submitted on {this.comment.dateString}</div>
                     <div onClick={this.openCommentModal} className="hand">Reply</div>
                 </div>
                 {
-                    this.props.data.comments &&
+                    this.comment.comments &&
                          <CommentContainer isToggled={true} 
-                            comments={this.props.data.comments} 
-                            commentId={this.props.data.id}
+                            comments={this.comment.comments} 
+                            commentId={this.comment.id}
                             postId={this.props.postId} 
-                            number={this.props.data.comments.length}/>
+                            number={this.comment.comments.length}/>
                     
                 }
             </div>
@@ -60,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     openCommentModal: (postId, commentId) => openModal(postId, commentId),
-    updateVotes: (comment, postId) => updateCommentVotes(comment, postId)
+    updateVotes: (comment, postId, status) => updateCommentVotes(comment, postId, status)
 }, dispatch);
 
 
